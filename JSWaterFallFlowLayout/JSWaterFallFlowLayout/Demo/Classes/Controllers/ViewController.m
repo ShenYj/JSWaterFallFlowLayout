@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "JSGoodsModel.h"
+#import "JSWaterFallCollectionViewCell.h"
+#import "JSWaterFallFlowLayout.h"
 
 // 重用标识
 static NSString *const reuseIdentifier = @"waterFallFlowLayout";
@@ -31,7 +33,7 @@ static NSString *const reuseIdentifier = @"waterFallFlowLayout";
 
 - (void)prepareView {
     
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[JSWaterFallCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -69,8 +71,8 @@ static NSString *const reuseIdentifier = @"waterFallFlowLayout";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    collectionViewCell.backgroundColor = [UIColor redColor];
+    JSWaterFallCollectionViewCell *collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    collectionViewCell.goods = self.goodsDatas[indexPath.item];
     return collectionViewCell;
 }
 
@@ -92,7 +94,7 @@ static NSString *const reuseIdentifier = @"waterFallFlowLayout";
 
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[JSWaterFallFlowLayout alloc] init]];
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.dataSource = self;
     }
