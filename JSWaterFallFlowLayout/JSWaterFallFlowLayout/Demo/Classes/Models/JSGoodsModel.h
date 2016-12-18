@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface JSGoodsModel : NSObject
 
@@ -16,6 +17,8 @@
 @property (nonatomic) NSNumber *width;
 /** 图片地址 */
 @property (nonatomic,copy) NSString *icon;
+/** 图片对象 */
+@property (nonatomic) UIImage *iconImage;
 /** 商品价格 */
 @property (nonatomic,copy) NSString *price;
 

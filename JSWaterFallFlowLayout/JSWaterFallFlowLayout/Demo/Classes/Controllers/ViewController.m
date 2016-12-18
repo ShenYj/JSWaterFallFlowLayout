@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "JSGoodsModel.h"
 
 @interface ViewController ()
+
+@property (nonatomic) NSArray *goodsDatas;
 
 @end
 
@@ -18,6 +21,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self prepareView];
+    self.goodsDatas;
+    
+    
 }
 
 - (void)prepareView {
@@ -28,6 +34,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSArray *)goodsDatas {
+    if (_goodsDatas == nil) {
+        NSArray *goodsArr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"waterFall.plist" ofType:nil]];
+        NSMutableArray *tempArr = [NSMutableArray array];
+        for (NSDictionary *dict in goodsArr) {
+            JSGoodsModel *goods = [JSGoodsModel goodsWithDict:dict];
+            [tempArr addObject:goods];
+        }
+        _goodsDatas = tempArr.copy;
+    }
+    return _goodsDatas;
 }
 
 @end

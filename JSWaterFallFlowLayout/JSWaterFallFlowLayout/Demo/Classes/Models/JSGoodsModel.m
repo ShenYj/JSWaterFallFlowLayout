@@ -22,4 +22,11 @@
     return [[self alloc] initWithDict:dict];
 }
 
+- (UIImage *)iconImage {
+    if (_iconImage == nil) {
+        _iconImage = [UIImage imageNamed:_icon];
+    }
+    return _iconImage;
+}
+
 @end
