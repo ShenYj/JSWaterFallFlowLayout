@@ -24,14 +24,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self prepareView];
-    
-    
-    
 }
 
 - (void)prepareView {
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:self.collectionView];
+    self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSLayoutConstraint *left_CV = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0];
+    [self.view addConstraint:left_CV];
+    NSLayoutConstraint *top_CV = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    [self.view addConstraint:top_CV];
+    NSLayoutConstraint *right_CV = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0];
+    [self.view addConstraint:right_CV];
+    NSLayoutConstraint *bottom_CV = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    [self.view addConstraint:bottom_CV];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,6 +64,7 @@
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+        _collectionView.backgroundColor = [UIColor redColor];
     }
     return _collectionView;
 }
