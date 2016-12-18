@@ -11,7 +11,10 @@
 
 @interface ViewController ()
 
+/** 数据容器 */
 @property (nonatomic) NSArray *goodsDatas;
+/** CollectionView */
+@property (nonatomic) UICollectionView *collectionView;
 
 @end
 
@@ -21,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self prepareView];
-    self.goodsDatas;
+    
     
     
 }
@@ -47,6 +50,13 @@
         _goodsDatas = tempArr.copy;
     }
     return _goodsDatas;
+}
+
+- (UICollectionView *)collectionView {
+    if (_collectionView == nil) {
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+    }
+    return _collectionView;
 }
 
 @end
