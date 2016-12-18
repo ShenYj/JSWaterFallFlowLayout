@@ -13,6 +13,7 @@
 		F71D16EB1E064FD60099F65B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71D16E21E064FD60099F65B /* LaunchScreen.storyboard */; };
 		F71D16EC1E064FD60099F65B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71D16E41E064FD60099F65B /* Main.storyboard */; };
 		F71D16ED1E064FD60099F65B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F71D16E61E064FD60099F65B /* main.m */; };
+		F71D16EF1E0662F00099F65B /* waterFall.plist in Resources */ = {isa = PBXBuildFile; fileRef = F71D16EE1E0662F00099F65B /* waterFall.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		F71D16E31E064FD60099F65B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F71D16E51E064FD60099F65B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F71D16E61E064FD60099F65B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F71D16EE1E0662F00099F65B /* waterFall.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = waterFall.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		F71D16E71E064FD60099F65B /* WaterFallFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
+				F71D16EE1E0662F00099F65B /* waterFall.plist */,
 			);
 			path = WaterFallFlowLayout;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				F71D16EC1E064FD60099F65B /* Main.storyboard in Resources */,
 				F71D16EA1E064FD60099F65B /* Assets.xcassets in Resources */,
 				F71D16EB1E064FD60099F65B /* LaunchScreen.storyboard in Resources */,
+				F71D16EF1E0662F00099F65B /* waterFall.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
