@@ -9,7 +9,10 @@
 #import "ViewController.h"
 #import "JSGoodsModel.h"
 
-@interface ViewController ()
+// 重用标识
+static NSString *const reuseIdentifier = @"waterFallFlowLayout";
+
+@interface ViewController () <UICollectionViewDataSource>
 
 /** 数据容器 */
 @property (nonatomic) NSArray *goodsDatas;
@@ -28,11 +31,16 @@
 
 - (void)prepareView {
     
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     self.view.backgroundColor = [UIColor whiteColor];
-    
     [self.view addSubview:self.collectionView];
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+
     NSLayoutConstraint *left_CV = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0];
     [self.view addConstraint:left_CV];
     NSLayoutConstraint *top_CV = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:0];
@@ -47,6 +55,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.goodsDatas.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell *collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    collectionViewCell.backgroundColor = [UIColor redColor];
+    return collectionViewCell;
+}
+
+#pragma mark
+#pragma mark - lazy
 
 - (NSArray *)goodsDatas {
     if (_goodsDatas == nil) {
@@ -64,7 +93,8 @@
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-        _collectionView.backgroundColor = [UIColor redColor];
+        _collectionView.backgroundColor = [UIColor clearColor];
+        _collectionView.dataSource = self;
     }
     return _collectionView;
 }
