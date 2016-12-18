@@ -14,6 +14,7 @@
 		F71D16ED1E064FD60099F65B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F71D16E61E064FD60099F65B /* main.m */; };
 		F71D16EF1E0662F00099F65B /* waterFall.plist in Resources */ = {isa = PBXBuildFile; fileRef = F71D16EE1E0662F00099F65B /* waterFall.plist */; };
 		F71D16F11E0663880099F65B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71D16F01E0663880099F65B /* Launch Screen.storyboard */; };
+		F71D16F41E06646F0099F65B /* JSGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F71D16F31E06646F0099F65B /* JSGoodsModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		F71D16E61E064FD60099F65B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F71D16EE1E0662F00099F65B /* waterFall.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = waterFall.plist; sourceTree = "<group>"; };
 		F71D16F01E0663880099F65B /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		F71D16F21E06646F0099F65B /* JSGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSGoodsModel.h; sourceTree = "<group>"; };
+		F71D16F31E06646F0099F65B /* JSGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSGoodsModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,8 @@
 		F71D16DC1E064FD60099F65B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F71D16F21E06646F0099F65B /* JSGoodsModel.h */,
+				F71D16F31E06646F0099F65B /* JSGoodsModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 				F71D16E91E064FD60099F65B /* AppDelegate.m in Sources */,
 				F71D16ED1E064FD60099F65B /* main.m in Sources */,
 				F71D16E81E064FD60099F65B /* ViewController.m in Sources */,
+				F71D16F41E06646F0099F65B /* JSGoodsModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
