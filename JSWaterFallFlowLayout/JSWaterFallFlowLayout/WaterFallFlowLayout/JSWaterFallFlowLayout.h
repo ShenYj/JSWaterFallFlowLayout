@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JSGoodsModel.h"
 
 @interface JSWaterFallFlowLayout : UICollectionViewFlowLayout
+
+- (instancetype)initWithGoods:(JSGoodsModel *)goods;
 
 @end

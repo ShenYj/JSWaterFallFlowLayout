@@ -35,6 +35,7 @@ static NSString *const reuseIdentifier = @"waterFallFlowLayout";
     
     [self.collectionView registerClass:[JSWaterFallCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"瀑布流演示";
     [self.view addSubview:self.collectionView];
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     

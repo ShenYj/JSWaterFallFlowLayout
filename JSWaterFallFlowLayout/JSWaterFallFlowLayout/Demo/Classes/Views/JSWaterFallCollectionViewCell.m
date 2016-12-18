@@ -30,11 +30,12 @@
     [self.contentView addSubview:self.goodsImageView];
     [self.contentView addSubview:self.goodsPriceLabel];
     self.goodsImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.goodsImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.goodsPriceLabel.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    NSLog(@"%@",NSStringFromCGRect(self.frame));
     
     NSLayoutConstraint *top_IV = [NSLayoutConstraint constraintWithItem:self.goodsImageView
                                                               attribute:NSLayoutAttributeTop
@@ -54,7 +55,7 @@
                                                                 constant:0
                                    ];
     [self.contentView addConstraint:left_IV];
-    NSLayoutConstraint *rigth_IV = [NSLayoutConstraint constraintWithItem:self.goodsImageView
+    NSLayoutConstraint *right_IV = [NSLayoutConstraint constraintWithItem:self.goodsImageView
                                                                 attribute:NSLayoutAttributeRight
                                                                 relatedBy:NSLayoutRelationEqual
                                                                    toItem:self.contentView
@@ -62,7 +63,7 @@
                                                                multiplier:1
                                                                  constant:0
                                     ];
-    [self.contentView addConstraint:rigth_IV];
+    [self.contentView addConstraint:right_IV];
     NSLayoutConstraint *bottom_IV = [NSLayoutConstraint constraintWithItem:self.goodsImageView
                                                                  attribute:NSLayoutAttributeBottom
                                                                  relatedBy:NSLayoutRelationEqual
@@ -73,15 +74,49 @@
                                      ];
     [self.contentView addConstraint:bottom_IV];
     
-    
-    
+    NSLayoutConstraint *bottom_L = [NSLayoutConstraint constraintWithItem:self.goodsPriceLabel
+                                                                attribute:NSLayoutAttributeBottom
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.contentView
+                                                                attribute:NSLayoutAttributeBottom
+                                                               multiplier:1
+                                                                 constant:0
+                                    ];
+    [self.contentView addConstraint:bottom_L];
+    NSLayoutConstraint *left_L = [NSLayoutConstraint constraintWithItem:self.goodsPriceLabel
+                                                              attribute:NSLayoutAttributeLeft
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self.contentView
+                                                              attribute:NSLayoutAttributeLeft
+                                                             multiplier:1
+                                                               constant:0
+                                  ];
+    [self.contentView addConstraint:left_L];
+    NSLayoutConstraint *right_L = [NSLayoutConstraint constraintWithItem:self.goodsPriceLabel
+                                                               attribute:NSLayoutAttributeRight
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:self.contentView
+                                                               attribute:NSLayoutAttributeRight
+                                                              multiplier:1
+                                                                constant:0
+                                   ];
+    [self.contentView addConstraint:right_L];
+    NSLayoutConstraint *height_L = [NSLayoutConstraint constraintWithItem:self.goodsPriceLabel
+                                                                attribute:NSLayoutAttributeHeight
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:nil
+                                                                attribute:NSLayoutAttributeNotAnAttribute
+                                                               multiplier:1
+                                                                 constant:40
+                                    ];
+    [self.contentView addConstraint:height_L];
 
 }
 
 - (void)setGoods:(JSGoodsModel *)goods {
     _goods = goods;
     self.goodsImageView.image = goods.iconImage;
-    self.goodsPriceLabel.text = @"1111";
+    self.goodsPriceLabel.text = goods.price;
 }
 
 #pragma mark
@@ -98,7 +133,7 @@
     if (_goodsPriceLabel == nil) {
         _goodsPriceLabel = [[UILabel alloc] init];
         _goodsPriceLabel.textColor = [UIColor purpleColor];
-        _goodsPriceLabel.font = [UIFont systemFontOfSize:10];
+        _goodsPriceLabel.font = [UIFont systemFontOfSize:12];
         _goodsPriceLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _goodsPriceLabel;
