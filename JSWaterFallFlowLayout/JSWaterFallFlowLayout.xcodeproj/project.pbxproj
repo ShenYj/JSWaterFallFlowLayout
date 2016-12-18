@@ -10,10 +10,10 @@
 		F71D16E81E064FD60099F65B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F71D16DB1E064FD60099F65B /* ViewController.m */; };
 		F71D16E91E064FD60099F65B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F71D16E01E064FD60099F65B /* AppDelegate.m */; };
 		F71D16EA1E064FD60099F65B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F71D16E11E064FD60099F65B /* Assets.xcassets */; };
-		F71D16EB1E064FD60099F65B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71D16E21E064FD60099F65B /* LaunchScreen.storyboard */; };
 		F71D16EC1E064FD60099F65B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71D16E41E064FD60099F65B /* Main.storyboard */; };
 		F71D16ED1E064FD60099F65B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F71D16E61E064FD60099F65B /* main.m */; };
 		F71D16EF1E0662F00099F65B /* waterFall.plist in Resources */ = {isa = PBXBuildFile; fileRef = F71D16EE1E0662F00099F65B /* waterFall.plist */; };
+		F71D16F11E0663880099F65B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71D16F01E0663880099F65B /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,10 +24,10 @@
 		F71D16DF1E064FD60099F65B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F71D16E01E064FD60099F65B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F71D16E11E064FD60099F65B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F71D16E31E064FD60099F65B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F71D16E51E064FD60099F65B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F71D16E61E064FD60099F65B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F71D16EE1E0662F00099F65B /* waterFall.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = waterFall.plist; sourceTree = "<group>"; };
+		F71D16F01E0663880099F65B /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +115,8 @@
 				F71D16DF1E064FD60099F65B /* AppDelegate.h */,
 				F71D16E01E064FD60099F65B /* AppDelegate.m */,
 				F71D16E11E064FD60099F65B /* Assets.xcassets */,
-				F71D16E21E064FD60099F65B /* LaunchScreen.storyboard */,
 				F71D16E41E064FD60099F65B /* Main.storyboard */,
+				F71D16F01E0663880099F65B /* Launch Screen.storyboard */,
 				F71D16E61E064FD60099F65B /* main.m */,
 			);
 			path = SupportingFiles;
@@ -190,7 +190,7 @@
 			files = (
 				F71D16EC1E064FD60099F65B /* Main.storyboard in Resources */,
 				F71D16EA1E064FD60099F65B /* Assets.xcassets in Resources */,
-				F71D16EB1E064FD60099F65B /* LaunchScreen.storyboard in Resources */,
+				F71D16F11E0663880099F65B /* Launch Screen.storyboard in Resources */,
 				F71D16EF1E0662F00099F65B /* waterFall.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,14 +211,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F71D16E21E064FD60099F65B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F71D16E31E064FD60099F65B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		F71D16E41E064FD60099F65B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -319,6 +311,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JSWaterFallFlowLayout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ShenYj.JSWaterFallFlowLayout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -330,6 +323,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JSWaterFallFlowLayout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ShenYj.JSWaterFallFlowLayout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
