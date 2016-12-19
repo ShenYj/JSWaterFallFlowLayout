@@ -35,7 +35,6 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    NSLog(@"%@",NSStringFromCGRect(self.frame));
     
     NSLayoutConstraint *top_IV = [NSLayoutConstraint constraintWithItem:self.goodsImageView
                                                               attribute:NSLayoutAttributeTop

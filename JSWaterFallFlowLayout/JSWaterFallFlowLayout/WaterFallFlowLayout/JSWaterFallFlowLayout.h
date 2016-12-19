@@ -11,6 +11,7 @@
 
 @interface JSWaterFallFlowLayout : UICollectionViewFlowLayout
 
-- (instancetype)initWithGoods:(JSGoodsModel *)goods;
+/** item列数 ,每行Item的个数(默认为3) */
+@property (nonatomic,assign) NSInteger itemColCount;
 
 @end
