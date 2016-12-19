@@ -14,10 +14,12 @@
 // 重用标识
 static NSString *const reuseIdentifier = @"waterFallFlowLayout";
 
-@interface ViewController () <UICollectionViewDataSource>
+@interface ViewController () <UICollectionViewDataSource,JSWaterFallFlowLayoutDataSource>
 
 /** 数据容器 */
 @property (nonatomic) NSArray *goodsDatas;
+/** 瀑布流布局 */
+@property (nonatomic) JSWaterFallFlowLayout *waterFallFlowLayout;
 /** CollectionView */
 @property (nonatomic) UICollectionView *collectionView;
 
@@ -38,7 +40,6 @@ static NSString *const reuseIdentifier = @"waterFallFlowLayout";
     self.title = @"瀑布流演示";
     [self.view addSubview:self.collectionView];
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-    
 }
 
 - (void)viewDidLayoutSubviews {
@@ -57,6 +58,13 @@ static NSString *const reuseIdentifier = @"waterFallFlowLayout";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark
+#pragma mark - JSWaterFallFlowLayoutDataSource
+- (CGFloat)percentageOfWaterFallFlawLayout:(JSWaterFallFlowLayout *)waterFallFlowLayout withItemAtIndexPath:(NSIndexPath *)indexPath {
+    JSGoodsModel *goodsModel = self.goodsDatas[indexPath.item];
+    return goodsModel.height.floatValue / goodsModel.width.floatValue;
 }
 
 #pragma mark
@@ -95,11 +103,19 @@ static NSString *const reuseIdentifier = @"waterFallFlowLayout";
 
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[JSWaterFallFlowLayout alloc] init]];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.waterFallFlowLayout];
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.dataSource = self;
     }
     return _collectionView;
+}
+
+- (JSWaterFallFlowLayout *)waterFallFlowLayout {
+    if (!_waterFallFlowLayout) {
+        _waterFallFlowLayout = [[JSWaterFallFlowLayout alloc] init];
+        _waterFallFlowLayout.dataSource = self;
+    }
+    return _waterFallFlowLayout;
 }
 
 @end

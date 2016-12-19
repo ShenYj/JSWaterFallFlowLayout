@@ -7,11 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JSGoodsModel.h"
+@class JSWaterFallFlowLayout;
+
+@protocol JSWaterFallFlowLayoutDataSource <NSObject>
+
+@required
+/** 获取图片的宽高比例 */
+- (CGFloat)percentageOfWaterFallFlawLayout:(JSWaterFallFlowLayout *)waterFallFlowLayout withItemAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
 
 @interface JSWaterFallFlowLayout : UICollectionViewFlowLayout
 
 /** item列数 ,每行Item的个数(默认为3) */
 @property (nonatomic,assign) NSInteger itemColCount;
+
+/** 代理对象 */
+@property (nonatomic,weak) id <JSWaterFallFlowLayoutDataSource> dataSource;
+
 
 @end
