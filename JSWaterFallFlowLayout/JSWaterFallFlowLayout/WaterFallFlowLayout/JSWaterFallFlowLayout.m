@@ -12,7 +12,12 @@
 
 /** 存放改变后的控件属性 */
 @property (nonatomic) NSMutableArray <UICollectionViewLayoutAttributes *>*itemAttributesArr;
+/** 每个控件的宽度 */
 @property (nonatomic,assign) CGFloat itemAttributeWidth;
+/** 记录上一个控件的最大Y值 */
+@property (nonatomic) NSMutableArray *tempItemAttributeArrMaxY;
+/** 当前最大Y值 */
+@property (nonatomic,assign) CGFloat currentMaxY;
 
 @end
 
@@ -45,10 +50,13 @@
     CGFloat attributeHeight = [self.dataSource percentageOfWaterFallFlawLayout:self withItemAtIndexPath:indexPath] * attributeWidth;
     // X: SectionLeft间距 + 变量 * (item宽度 + item内间距)
     CGFloat attributeCoordinateX = self.sectionInset.left + indexPath.item % self.itemColCount * (self.minimumInteritemSpacing + attributeWidth);
-    // Y: SectionTop间距 + 变量 * (item高度 + item行间距)
-    CGFloat attributeCoordinateY = self.sectionInset.top + indexPath.item / self.itemColCount * (self.minimumLineSpacing + attributeHeight);
+    // Y: 得到该coloum中上一个控件的最大的Y + 行间距
+    CGFloat lastObjectMaxY = [self.tempItemAttributeArrMaxY[indexPath.item % self.itemColCount] doubleValue];
+    CGFloat attributeCoordinateY = lastObjectMaxY + self.minimumLineSpacing;
     // 根据计算后的 x,y,w,h 重新设置Frame属性
     itemAttributes.frame = CGRectMake(attributeCoordinateX, attributeCoordinateY, attributeWidth, attributeHeight);
+    // 记录当前coloum上控件的最大Y值
+    self.tempItemAttributeArrMaxY[indexPath.item % self.itemColCount] = @(CGRectGetMaxY(itemAttributes.frame));
     
     return itemAttributes;
 }
@@ -76,6 +84,16 @@
         _itemAttributeWidth = (self.collectionView.bounds.size.width - self.sectionInset.left - self.sectionInset.right - self.minimumInteritemSpacing*(self.itemColCount-1)) / self.itemColCount;
     }
     return _itemAttributeWidth;
+}
+
+- (NSMutableArray *)tempItemAttributeArrMaxY {
+    if (!_tempItemAttributeArrMaxY) {
+        _tempItemAttributeArrMaxY = [NSMutableArray array];
+        for (int i = 0; i < self.itemColCount; i++) {
+            [_tempItemAttributeArrMaxY addObject:@0];
+        }
+    }
+    return _tempItemAttributeArrMaxY;
 }
 
 @end
