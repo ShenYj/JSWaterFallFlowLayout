@@ -13,6 +13,7 @@
 
 // 重用标识
 static NSString *const reuseIdentifier = @"waterFallFlowLayout";
+static NSString *const reuseFooterIdentifier = @"footerIdentifier";
 
 @interface ViewController () <UICollectionViewDataSource,JSWaterFallFlowLayoutDataSource>
 
@@ -36,6 +37,7 @@ static NSString *const reuseIdentifier = @"waterFallFlowLayout";
 - (void)prepareView {
     
     [self.collectionView registerClass:[JSWaterFallCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reuseFooterIdentifier];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"瀑布流演示";
     [self.view addSubview:self.collectionView];
@@ -83,6 +85,12 @@ static NSString *const reuseIdentifier = @"waterFallFlowLayout";
     JSWaterFallCollectionViewCell *collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     collectionViewCell.goods = self.goodsDatas[indexPath.item];
     return collectionViewCell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reuseFooterIdentifier forIndexPath:indexPath];
+    footerView.backgroundColor = [UIColor purpleColor];
+    return footerView;
 }
 
 #pragma mark

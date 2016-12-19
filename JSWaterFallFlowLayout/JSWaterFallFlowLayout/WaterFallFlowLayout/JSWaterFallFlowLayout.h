@@ -22,6 +22,9 @@
 /** item列数 ,每行Item的个数(默认为3) */
 @property (nonatomic,assign) NSInteger itemColCount;
 
+/** FooterView高度 , 默认为60 */
+@property (nonatomic,assign) CGFloat footerViewHeight;
+
 /** 代理对象 */
 @property (nonatomic,weak) id <JSWaterFallFlowLayoutDataSource> dataSource;
 

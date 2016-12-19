@@ -27,7 +27,7 @@
 
 @implementation JSWaterFallFlowLayout
 
-
+/** 设置布局 */
 - (void)prepareLayout {
     [super prepareLayout];
     self.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -37,9 +37,18 @@
         UICollectionViewLayoutAttributes *itemAttributes = [self layoutAttributesForItemAtIndexPath:indexPath];
         [self.itemAttributesArr addObject:itemAttributes];
     }
+    // 添加FooterView (section为1组的情况下,而Item始终未0)
+    NSIndexPath *footerViewIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    UICollectionViewLayoutAttributes *footerViewAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter withIndexPath:footerViewIndexPath];
+    // 需要设置下Frame,并且在自定义Layout的情况下,所有值都有意义
+    self.footerReferenceSize = CGSizeMake(self.collectionView.bounds.size.width, self.footerViewHeight);
+    footerViewAttributes.hidden = NO;
+    footerViewAttributes.frame = CGRectMake(0, self.currentMaxY , self.collectionView.bounds.size.width, self.footerReferenceSize.height);
+    [self.itemAttributesArr addObject:footerViewAttributes];
+    
 }
 
-/** 返回区域内控件共有的属性 */
+/** 返回区域内控件共有的属性 (包含HeaderView和FooterView) */
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     return self.itemAttributesArr;
 }
@@ -66,7 +75,8 @@
 
 /** CollectionView的滚动区域 */
 - (CGSize)collectionViewContentSize {
-    return CGSizeMake(0, self.currentMaxY + self.sectionInset.bottom);
+    // 组头的高度 + 顶部的组内间距 + 最大Y值 + 底部的组内间距 + 组尾的高度
+    return CGSizeMake(0, self.headerReferenceSize.height + self.sectionInset.top + self.currentMaxY + self.sectionInset.bottom + self.footerReferenceSize.height);
 }
 
 #pragma mark
@@ -123,6 +133,13 @@
         _currentMaxY = ( _currentMaxY > number.doubleValue ) ? _currentMaxY : number.doubleValue;
     }
     return _currentMaxY;
+}
+
+- (CGFloat)footerViewHeight {
+    if (_footerViewHeight == 0) {
+        _footerViewHeight = 60.f;
+    }
+    return _footerViewHeight;
 }
 
 @end
