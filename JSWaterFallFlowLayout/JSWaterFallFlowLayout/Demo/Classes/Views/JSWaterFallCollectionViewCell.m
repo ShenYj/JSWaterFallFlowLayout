@@ -26,7 +26,6 @@
 }
 
 - (void)prepareView {
-    
     [self.contentView addSubview:self.goodsImageView];
     [self.contentView addSubview:self.goodsPriceLabel];
     self.goodsImageView.translatesAutoresizingMaskIntoConstraints = NO;

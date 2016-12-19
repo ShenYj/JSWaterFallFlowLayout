@@ -12,7 +12,7 @@
 @protocol JSWaterFallFlowLayoutDataSource <NSObject>
 
 @required
-/** 获取图片的宽高比例 */
+/** 获取图片的宽高比例 (高度/宽度) */
 - (CGFloat)percentageOfWaterFallFlawLayout:(JSWaterFallFlowLayout *)waterFallFlowLayout withItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
