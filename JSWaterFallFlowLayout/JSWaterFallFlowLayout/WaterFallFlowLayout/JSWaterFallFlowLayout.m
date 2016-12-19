@@ -14,10 +14,14 @@
 @property (nonatomic) NSMutableArray <UICollectionViewLayoutAttributes *>*itemAttributesArr;
 /** 每个控件的宽度 */
 @property (nonatomic,assign) CGFloat itemAttributeWidth;
-/** 记录上一个控件的最大Y值 */
+/** 记录每一列中上一个控件的最大Y值的数组 */
 @property (nonatomic) NSMutableArray *tempItemAttributeArrMaxY;
-/** 当前最大Y值 */
+/** 当前最大Y值,用来计算CollectionView ContentSize */
 @property (nonatomic,assign) CGFloat currentMaxY;
+/** 当前控件中最小的Y值, 决定下一个控件在最小Y值这一列中的位置 */
+@property (nonatomic,assign) CGFloat currentMinY;
+/** 最小Y值所在的列数,决定下一个控件排列的列数 */
+@property (nonatomic,assign) NSInteger currentMinYCol;
 
 @end
 
@@ -27,7 +31,7 @@
 - (void)prepareLayout {
     [super prepareLayout];
     self.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
+    // 遍历所有Item,取出公共属性,存放到数组中,用以修改Frame
     for (int i = 0; i < [self.collectionView numberOfItemsInSection:0]; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         UICollectionViewLayoutAttributes *itemAttributes = [self layoutAttributesForItemAtIndexPath:indexPath];
@@ -48,17 +52,21 @@
     CGFloat attributeWidth = self.itemAttributeWidth;
     // 高: 图片的高度/图片的宽度 --> 宽高比例 * item计算后的宽度
     CGFloat attributeHeight = [self.dataSource percentageOfWaterFallFlawLayout:self withItemAtIndexPath:indexPath] * attributeWidth;
-    // X: SectionLeft间距 + 变量 * (item宽度 + item内间距)
-    CGFloat attributeCoordinateX = self.sectionInset.left + indexPath.item % self.itemColCount * (self.minimumInteritemSpacing + attributeWidth);
-    // Y: 得到该coloum中上一个控件的最大的Y + 行间距
-    CGFloat lastObjectMaxY = [self.tempItemAttributeArrMaxY[indexPath.item % self.itemColCount] doubleValue];
-    CGFloat attributeCoordinateY = lastObjectMaxY + self.minimumLineSpacing;
+    // Y: 取出每一列中记录下来的控件,在最小Y值的列上添加此控件 (先计算Y轴坐标,调用self.currentMinY,计算出当前最小的列数self.currentMinYCol)
+    CGFloat attributeCoordinateY = self.currentMinY + self.minimumLineSpacing;
+    // X: SectionLeft间距 + Y坐标最小的列数 * (item宽度 + item内间距)
+    CGFloat attributeCoordinateX = self.sectionInset.left + self.currentMinYCol * (self.minimumInteritemSpacing + attributeWidth);
     // 根据计算后的 x,y,w,h 重新设置Frame属性
     itemAttributes.frame = CGRectMake(attributeCoordinateX, attributeCoordinateY, attributeWidth, attributeHeight);
-    // 记录当前coloum上控件的最大Y值
-    self.tempItemAttributeArrMaxY[indexPath.item % self.itemColCount] = @(CGRectGetMaxY(itemAttributes.frame));
+    // 记录当前coloum上控件的最大Y值 (更新数组中,当前列上的元素)
+    self.tempItemAttributeArrMaxY[self.currentMinYCol] = @(CGRectGetMaxY(itemAttributes.frame));
     
     return itemAttributes;
+}
+
+/** CollectionView的滚动区域 */
+- (CGSize)collectionViewContentSize {
+    return CGSizeMake(0, self.currentMaxY + self.sectionInset.bottom);
 }
 
 #pragma mark
@@ -94,6 +102,27 @@
         }
     }
     return _tempItemAttributeArrMaxY;
+}
+
+- (CGFloat)currentMinY {
+    _currentMinY = MAXFLOAT;
+    [self.tempItemAttributeArrMaxY enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj doubleValue] < _currentMinY) {
+            _currentMinY = [obj doubleValue];
+            // 记录当前最小Y值所在的列数
+            self.currentMinYCol = idx;
+        }
+    }];
+    return _currentMinY;
+}
+
+// 获取最大Y轴坐标,计算ContentSize
+- (CGFloat)currentMaxY {
+    _currentMaxY = 0.f;
+    for (NSNumber *number in self.tempItemAttributeArrMaxY) {
+        _currentMaxY = ( _currentMaxY > number.doubleValue ) ? _currentMaxY : number.doubleValue;
+    }
+    return _currentMaxY;
 }
 
 @end
