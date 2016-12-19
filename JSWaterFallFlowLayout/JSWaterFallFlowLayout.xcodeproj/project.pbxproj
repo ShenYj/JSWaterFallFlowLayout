@@ -17,6 +17,7 @@
 		F71D16F41E06646F0099F65B /* JSGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F71D16F31E06646F0099F65B /* JSGoodsModel.m */; };
 		F71D16F71E0677B10099F65B /* JSWaterFallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F71D16F61E0677B10099F65B /* JSWaterFallCollectionViewCell.m */; };
 		F71D16FA1E067EC00099F65B /* JSWaterFallFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F71D16F91E067EC00099F65B /* JSWaterFallFlowLayout.m */; };
+		F71D16FD1E0823C30099F65B /* JSCollectionReusableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F71D16FC1E0823C30099F65B /* JSCollectionReusableFooterView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		F71D16F61E0677B10099F65B /* JSWaterFallCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSWaterFallCollectionViewCell.m; sourceTree = "<group>"; };
 		F71D16F81E067EC00099F65B /* JSWaterFallFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSWaterFallFlowLayout.h; sourceTree = "<group>"; };
 		F71D16F91E067EC00099F65B /* JSWaterFallFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSWaterFallFlowLayout.m; sourceTree = "<group>"; };
+		F71D16FB1E0823C30099F65B /* JSCollectionReusableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCollectionReusableFooterView.h; sourceTree = "<group>"; };
+		F71D16FC1E0823C30099F65B /* JSCollectionReusableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCollectionReusableFooterView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 			children = (
 				F71D16F51E0677B10099F65B /* JSWaterFallCollectionViewCell.h */,
 				F71D16F61E0677B10099F65B /* JSWaterFallCollectionViewCell.m */,
+				F71D16FB1E0823C30099F65B /* JSCollectionReusableFooterView.h */,
+				F71D16FC1E0823C30099F65B /* JSCollectionReusableFooterView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F71D16FD1E0823C30099F65B /* JSCollectionReusableFooterView.m in Sources */,
 				F71D16E91E064FD60099F65B /* AppDelegate.m in Sources */,
 				F71D16FA1E067EC00099F65B /* JSWaterFallFlowLayout.m in Sources */,
 				F71D16F71E0677B10099F65B /* JSWaterFallCollectionViewCell.m in Sources */,

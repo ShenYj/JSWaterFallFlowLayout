@@ -10,6 +10,7 @@
 #import "JSGoodsModel.h"
 #import "JSWaterFallCollectionViewCell.h"
 #import "JSWaterFallFlowLayout.h"
+#import "JSCollectionReusableFooterView.h"
 
 // 重用标识
 static NSString *const reuseIdentifier = @"waterFallFlowLayout";
@@ -37,7 +38,7 @@ static NSString *const reuseFooterIdentifier = @"footerIdentifier";
 - (void)prepareView {
     
     [self.collectionView registerClass:[JSWaterFallCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reuseFooterIdentifier];
+    [self.collectionView registerClass:[JSCollectionReusableFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reuseFooterIdentifier];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"瀑布流演示";
     [self.view addSubview:self.collectionView];
@@ -88,7 +89,7 @@ static NSString *const reuseFooterIdentifier = @"footerIdentifier";
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reuseFooterIdentifier forIndexPath:indexPath];
+    JSCollectionReusableFooterView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reuseFooterIdentifier forIndexPath:indexPath];
     footerView.backgroundColor = [UIColor purpleColor];
     return footerView;
 }

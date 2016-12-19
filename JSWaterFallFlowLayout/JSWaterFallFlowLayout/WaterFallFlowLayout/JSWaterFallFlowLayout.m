@@ -137,7 +137,7 @@
 
 - (CGFloat)footerViewHeight {
     if (_footerViewHeight == 0) {
-        _footerViewHeight = 60.f;
+        _footerViewHeight = 49.f;
     }
     return _footerViewHeight;
 }
