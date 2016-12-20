@@ -8,11 +8,7 @@
 
 #import "JSCollectionReusableFooterView.h"
 
-@interface JSCollectionReusableFooterView ()
 
-@property (nonatomic) UIActivityIndicatorView *indicatorView;
-
-@end
 
 @implementation JSCollectionReusableFooterView
 
@@ -25,7 +21,7 @@
 }
 
 - (void)prepareView {
-    
+    self.backgroundColor = [UIColor purpleColor];
     [self addSubview:self.indicatorView];
     self.indicatorView.translatesAutoresizingMaskIntoConstraints = NO;
     

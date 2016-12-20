@@ -10,4 +10,7 @@
 
 @interface JSCollectionReusableFooterView : UICollectionReusableView
 
+/** 指示器 */
+@property (nonatomic) UIActivityIndicatorView *indicatorView;
+
 @end

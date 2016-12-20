@@ -16,7 +16,7 @@
 static NSString *const reuseIdentifier = @"waterFallFlowLayout";
 static NSString *const reuseFooterIdentifier = @"footerIdentifier";
 
-@interface ViewController () <UICollectionViewDataSource,JSWaterFallFlowLayoutDataSource>
+@interface ViewController () <UICollectionViewDataSource,UICollectionViewDelegate,JSWaterFallFlowLayoutDataSource>
 
 /** 数据容器 */
 @property (nonatomic) NSArray *goodsDatas;
@@ -24,7 +24,8 @@ static NSString *const reuseFooterIdentifier = @"footerIdentifier";
 @property (nonatomic) JSWaterFallFlowLayout *waterFallFlowLayout;
 /** CollectionView */
 @property (nonatomic) UICollectionView *collectionView;
-
+/** 记录FooterView,用以判断是否刷新条件之一 */
+@property (nonatomic,weak) JSCollectionReusableFooterView *footerView;
 @end
 
 @implementation ViewController
@@ -90,8 +91,17 @@ static NSString *const reuseFooterIdentifier = @"footerIdentifier";
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     JSCollectionReusableFooterView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reuseFooterIdentifier forIndexPath:indexPath];
-    footerView.backgroundColor = [UIColor purpleColor];
+    self.footerView = footerView;
     return footerView;
+}
+
+#pragma mark
+#pragma mark - UICollectionViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.footerView && !self.footerView.indicatorView.isAnimating) {
+        [self.footerView.indicatorView startAnimating];
+    }
 }
 
 #pragma mark
@@ -115,6 +125,7 @@ static NSString *const reuseFooterIdentifier = @"footerIdentifier";
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.waterFallFlowLayout];
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.dataSource = self;
+        _collectionView.delegate = self;
     }
     return _collectionView;
 }
