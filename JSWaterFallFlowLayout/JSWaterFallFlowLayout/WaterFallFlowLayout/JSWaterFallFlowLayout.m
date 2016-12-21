@@ -31,8 +31,20 @@
 - (void)prepareLayout {
     [super prepareLayout];
     self.scrollDirection = UICollectionViewScrollDirectionVertical;
+    
+    /** 第一种方式 */
+    // 在每次刷新前,清空数组
+    //[self.itemAttributesArr removeAllObjects];
+    // 将记录当前列最大Y轴坐标数组置nil(重置)
+    //self.tempItemAttributeArrMaxY = nil;
+    
+    /** 第二种方式 : 每次刷新重新布局前,移除最后一个元素(尾标题) 存放单个元素属性的时候,从新增的数据开始添加*/
+    [self.itemAttributesArr removeLastObject];
+    
     // 遍历所有Item,取出公共属性,存放到数组中,用以修改Frame
-    for (int i = 0; i < [self.collectionView numberOfItemsInSection:0]; i++) {
+    /** 第二种方式 : 每次刷新重新布局前,移除最后一个元素(尾标题) 存放单个元素属性的时候,从新增的数据开始添加*/
+    int currentItemsCount = (int)self.itemAttributesArr.count;
+    for (int i = currentItemsCount; i < [self.collectionView numberOfItemsInSection:0]; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         UICollectionViewLayoutAttributes *itemAttributes = [self layoutAttributesForItemAtIndexPath:indexPath];
         [self.itemAttributesArr addObject:itemAttributes];

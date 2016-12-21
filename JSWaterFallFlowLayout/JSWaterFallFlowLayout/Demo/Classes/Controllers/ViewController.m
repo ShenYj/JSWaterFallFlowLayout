@@ -101,6 +101,13 @@ static NSString *const reuseFooterIdentifier = @"footerIdentifier";
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (self.footerView && !self.footerView.indicatorView.isAnimating) {
         [self.footerView.indicatorView startAnimating];
+        // 加载数据...
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSArray *newDatas = [NSArray arrayWithArray:self.goodsDatas];
+            self.goodsDatas = [self.goodsDatas arrayByAddingObjectsFromArray:newDatas];
+            [self.footerView.indicatorView stopAnimating];
+            [self.collectionView reloadData];
+        });
     }
 }
 
