@@ -7,9 +7,9 @@
 >使用说明:<br>
 
 >>  .h头文件描述 :<br>
->>> 1.`itemColCount`-> 列数,如果不指定,默认3列,滚动方向为垂直方向 <br>
->>> 2.`footerViewHeight`-> FooterView高度,如果不指定,默认为49  <br>
->>> 3.`dataSource`数据源代理对象,通过设置此代理对象,实现协议方法(必须实现),获取到图片的宽高比例,计算布局 <br>
+>>> 1. `itemColCount`-> 列数,如果不指定,默认3列,滚动方向为垂直方向 <br>
+>>> 2. `footerViewHeight`-> FooterView高度,如果不指定,默认为49  <br>
+>>> 3. `dataSource`数据源代理对象,通过设置此代理对象,实现协议方法(必须实现),获取到图片的宽高比例,计算布局 <br>
 
 >> 实现过程: <br>
 >>> 1. 在CollectionView进行布局,实现`prepareLayout`过程中,通过遍历当前CollectionView的items,将每个具体Item的attribute取出(在自定义流水布局类中,通过`[self layoutAttributesForItemAtIndexPath:indexPath]`获取到具体item的属性),存入到一个自定义的数组中(itemAttributesArr) <br>
@@ -22,13 +22,13 @@
 >>> 8. 这样瀑布流Item 的Frame、高度优化 便设置完成 <br>
 >>> 9. FooterView处理: 在layout中返回可视化区域的控件是包含footer和headerView的,所以如果有的话需要单独添加;在`prepareLayout`遍历取出每个Item共有属性存入数组后,取出FooterView的属性对象(通过`[UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter withIndexPath:footerViewIndexPath]`,头为标签的item值默认均为0,所以只需要根据对应section,设置Kind枚举值便可取出头尾标签的属性对象,而在这里我们的section只有一组,所以section为0),需要注意的是,在`prepareLayout`中,设置头尾标签Frame(x,y,w,h)都是有意义的,设置好尾标签的Frame后,同样将尾标签的属性对象存入到`itemAttributesArr`数组中  <br>
 >>> 10. 上拉刷新时的处理,刷新数据后会调用reloadData,会重新执行`prepareLayout`方法,再遍历CollectionView的每个Item共有属性,添加至属性对象数组,不做任何处理,会属性对象数组对象叠加(原本记录存放的属性对象 + CollectionView刷新后现有全部Item属性对象),导致Crash;解决方式有两种: <br>
->>>>    1). 在布局开始时,移除`self.itemAttributesArr`中所有元素,防止数据叠加、并将当前记录的最大Y值数组置nil <br>
->>>>    `
-        [self.itemAttributesArr removeAllObjects];
-        self.tempItemAttributeArrMaxY = nil;
-        `<br>
+>>>> 1). 在布局开始时,移除`self.itemAttributesArr`中所有元素,防止数据叠加、并将当前记录的最大Y值数组置nil <br>
+>>>> `
+    [self.itemAttributesArr removeAllObjects];
+    self.tempItemAttributeArrMaxY = nil;
+    `<br>
 
->>>>    2). 在布局开始时,只移除尾标签(最后一个元素)、在遍历取出每个Item共有属性对象前,记录当前`itemAttributesArr`的数组长度,从这个长度开始遍历,直到CollectionView的最后一个元素 <br>
->>>>    `[self.itemAttributesArr removeLastObject];`
+>>>> 2). 在布局开始时,只移除尾标签(最后一个元素)、在遍历取出每个Item共有属性对象前,记录当前`itemAttributesArr`的数组长度,从这个长度开始遍历,直到CollectionView的最后一个元素 <br>
+>>>> `[self.itemAttributesArr removeLastObject];`
 
 
