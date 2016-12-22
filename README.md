@@ -25,7 +25,7 @@
                 [self.itemAttributesArr removeAllObjects];
                 self.tempItemAttributeArrMaxY = nil;
          
-         2).在布局开始时,只移除尾标签(最后一个元素)、在遍历取出每个Item共有属性对象前,记录当前`itemAttributesArr`的数组长度,从这个长度开始遍历,直到CollectionView的最后一个元素 
+     2).在布局开始时,只移除尾标签(最后一个元素)、在遍历取出每个Item共有属性对象前,记录当前`itemAttributesArr`的数组长度,从这个长度开始遍历,直到CollectionView的最后一个元素 
         
                 [self.itemAttributesArr removeLastObject];
 
